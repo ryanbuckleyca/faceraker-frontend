@@ -12,14 +12,16 @@ function Posts({posts}:any) {
 function Post(props:any) {
   const { title, price, location, images, text, link, group } = props.data
 
-  return <>
-    <h1><a href={link}>{title}</a></h1>
-    from {group.name}
-    <h2 style={{color: 'green'}}>{price}</h2>
-    <h3>{location}</h3>
-    <Images list={images}/>
-    <p>{text}</p>
-  </>
+  return  (
+    <div style={{position: 'relative', top: '300px'}}>
+      <h1><a href={link}>{title}</a></h1>
+      from {group.name}
+      <h2 style={{color: 'green'}}>{price}</h2>
+      <h3>{location}</h3>
+      <Images list={images}/>
+      <p>{text}</p>
+    </div>
+  )
 }
 
 function Images(props:any) {
@@ -29,7 +31,7 @@ function Images(props:any) {
 
   return (
     <div>{ 
-      images.map((img:string) => <img src={img} alt="detail" />) 
+      images.map((img:string) => <img key={img} src={img} alt="detail" />) 
     }</div>
   )
 }

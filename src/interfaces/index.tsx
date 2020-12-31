@@ -3,6 +3,8 @@ export interface post {
   title: string, 
   price: number, 
   location: string, 
+  latitude: number,
+  longitude: number,
   images: string, 
   text: string, 
   link: string,

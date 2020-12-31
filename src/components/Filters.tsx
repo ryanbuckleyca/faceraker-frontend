@@ -1,20 +1,25 @@
 import React from 'react'
-import { setConstantValue } from 'typescript'
 import { post } from '../interfaces'
 
 function Filters({ posts, setPosts }:any) {
 
-  const sortByPrice = (list:Array<any>, dir:string) => {
-    const sortedList = list.sort((a:post, b:post) => (
+  const sortByPrice = (dir:string) => {
+    const sorted = posts.sort((a:post, b:post) => (
       dir==='ASC' ? a.price - b.price : b.price - a.price
     ))
-    setPosts([...sortedList])
+    setPosts([...sorted])
   }
   
-  return <>
-    <button onClick={() => sortByPrice(posts, 'ASC')}>sort by price ASC</button>
-    <button onClick={() => sortByPrice(posts, 'DESC')}>sort by price DES</button>
-  </>
+  return (
+    <div style={{position: 'relative', top: 0, height: 0}}>
+      <button id='sortAsc' onClick={() => sortByPrice('ASC')}>
+        sort by price ASC
+      </button>
+      <button id='sortDesc' onClick={() => sortByPrice('DESC')}>
+        sort by price DES
+      </button>
+    </div>
+  )
 }
 
 export default Filters
