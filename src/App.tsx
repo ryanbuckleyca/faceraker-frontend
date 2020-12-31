@@ -9,6 +9,7 @@ import Mapbox from './components/Map'
 function App() {
 
   const [ posts, setPosts ] = useState<Array<post>>([])
+  const [ errors, setErrors ] = useState<string>()
 
   useEffect(() => { 
     const query = `query={
@@ -19,11 +20,13 @@ function App() {
     callAPI(query).then(res => {
       if(res.data) {
         setPosts(res.data.posts)
+      } else {
+        setErrors("cannot connect to api")
       }
     })
   }, [])
 
-  useEffect(()=> console.log('posts state changed'), [])
+  if(errors) return <div>{errors}</div>
 
   return (
     <div className="App">
