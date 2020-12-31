@@ -5,22 +5,38 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX || '';
 
-// this should happen on scraping
-// would be faster, and this merely undoes what's added there
-// maybe add a boolean to db --> vagueAddress?
-const handleVagueCoords = (post:post) => {
-  let montreal = /[Mm]ont[-]?[rR]([eé]|oy)al/gi
-  let quebec = /[qQ]([cC]|u[eé]bec)/gi
-  let nonletters = /[^0-9a-z]/gi
-  let locDetails = post.location
-    .replace(montreal, '')
-    .replace(quebec, '')
-    .replace(nonletters, '')
-  if(locDetails==='')
-    return "marker-dot"
-  else
-    return "marker-pilon"
+// TODO: scatter the dead
+// add variation to the coordinates of non-address posts
+// put them all in the cemetery
+const markerMountain = (post:post) => {
+  let r = 0.00396
+  let n = Math.random()<.5 ? -1 : 1
+  let x = r * Math.random() * n
+  let spots = [
+    [-73.591804+x, 45.508889+x],
+    [-73.591675+x, 45.503596+x],
+    [-73.597511+x, 45.508107+x],
+    [-73.602146+x, 45.504558+x],
+    [-73.606395+x, 45.501249+x]
+  ]
+  let spot = Math.floor(Math.random()*5)
+  return spots[spot]
 }
+
+const getCoords = (post:post) => {
+  const mtn = markerMountain(post)
+  return (
+    post.location === 'Montréal, Québec'
+    ? { lng: mtn[0], lat: mtn[1] }
+    : {lng: post.longitude, lat: post.latitude }
+  )
+}
+
+const markerClass = (post:post) => (
+  post.location === 'Montréal, Québec'
+  ? "marker-dot"
+  : "marker-pilon"
+)
 
 
 function Mapbox({ posts }:any) { 
@@ -28,15 +44,15 @@ function Mapbox({ posts }:any) {
     let map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      // Montreal starting position [lng, lat]
       center: [-73.55335998535156, 45.509063720703125],
-      zoom: 9 // starting zoom
+      zoom: 9
     })
     posts.forEach((post:post) => {
-      let coords = new mapboxgl.LngLat(post.longitude, post.latitude)
+      const {lng, lat} = getCoords(post)
+      const coords = new mapboxgl.LngLat(lng, lat)
 
-      var el = document.createElement('div')
-      el.className = handleVagueCoords(post)
+      const el = document.createElement('div')
+      el.className = markerClass(post)
 
       let marker = new mapboxgl.Marker(el)
         .setLngLat(coords)
