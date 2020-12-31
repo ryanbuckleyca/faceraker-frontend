@@ -16,8 +16,10 @@ const handleVagueCoords = (post:post) => {
     .replace(montreal, '')
     .replace(quebec, '')
     .replace(nonletters, '')
-  if(!locDetails)
-    console.log('address is just Montreal...')
+  if(locDetails==='')
+    return "marker-dot"
+  else
+    return "marker-pilon"
 }
 
 
@@ -31,16 +33,19 @@ function Mapbox({ posts }:any) {
       zoom: 9 // starting zoom
     })
     posts.forEach((post:post) => {
-      handleVagueCoords(post)
       let coords = new mapboxgl.LngLat(post.longitude, post.latitude)
-      let marker = new mapboxgl.Marker()
+
+      var el = document.createElement('div')
+      el.className = handleVagueCoords(post)
+
+      let marker = new mapboxgl.Marker(el)
         .setLngLat(coords)
-        .addTo(map);
+        .addTo(map)
       return marker
     })  
-  }, [])
+  }, [posts])
 
-  return <div id='map' style={{width: '400px', height: '300px'}}></div>
+  return <div id='map' style={{ top: '50px', width: '100%', height: '300px' }}></div>
 }
 
 export default Mapbox
