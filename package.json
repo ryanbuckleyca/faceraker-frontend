@@ -1,6 +1,9 @@
 {
   "name": "louwer-frontend",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.20.1"
+  },
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.0.0",
