@@ -1,8 +1,10 @@
 /* src/App.js */
 import React, { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { markerClass } from './markers.js'
-import { getCoords } from './coords.js'
+import { markerClass } from './markers'
+import { getCoords } from './coords'
+import { popupCard } from './pop-up'
+import './styles.css'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX;
 
@@ -15,12 +17,14 @@ const mapObj = {
 
 const putMarkerOnMap = (post, map) => {
   const { lng, lat } = getCoords(post)
+  const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupCard(post));
   const coords = new mapboxgl.LngLat(lng, lat)
   const el = document.createElement('div')
   el.className = markerClass(post)
 
   const marker = new mapboxgl.Marker(el)
     .setLngLat(coords)
+    .setPopup(popup)
     .addTo(map)
     
   return marker
@@ -35,7 +39,7 @@ function Mapbox({ children }) {
   if(!children) return <em>Loading...</em>
 
   return (
-    <div id='map' class="h-full"></div>
+    <div id='map' className='h-full'></div>
   )
 }
 

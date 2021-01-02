@@ -6,13 +6,13 @@ function Images({ children }) {
   // TODO: render carousel for small screens
 
   return (
-    <div class="flex space-y-2 flex-wrap my-3">{ 
+    <div className="flex space-y-2 flex-wrap my-3">{ 
       images.map(img => <img 
         key={img} 
         src={img} 
         alt="detail" 
         width="100" 
-        class="mr-2" 
+        className="mr-2" 
       />)
     }</div>
   )

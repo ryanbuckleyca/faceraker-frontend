@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import { callAPI } from './utils/callAPI'
 import Slogan from './components/Slogan'
 import Posts from './components/Posts'
@@ -24,17 +23,30 @@ function App() {
   if(errors) return <div>{errors}</div>
 
   return (
-    <div class="flex-row h-screen w-screen">
-      <div id="slogan" class="flex sm:fixed w-full px-5 h-20 items-center bg-red-600 z-10 space-between">
+    <div className="container">
+      <div id="slogan" className="
+        w-full p-5 bg-red-600 z-10
+        sm:w-1/2
+      ">
         <Slogan />
       </div>
-      <div id="mapbox" class="sticky w-full h-1/3 top-0 sm:fixed sm:right-0 sm:w-1/2 sm:h-screen">
+      <div id="mapbox" className="
+        w-full h-64 top-20 
+        sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
+      ">
         <Mapbox>{ posts }</Mapbox>
       </div>
-      <div id="filters" class="sticky w-full bg-white order-2 top-1/3 sm:w-1/2 sm:fixed sm:top-20 z-10">
+      <div id="filters" className="
+        w-full bg-white sticky top-0 z-10
+        sm:w-1/2 
+      ">
         <Filters setPosts={setPosts}>{ posts }</Filters>
       </div>
-      <div id="posts" class="w-full p-3 sm:w-1/2 sm:float-left sm:mt-28">
+
+      <div id="posts" className="
+        w-full px-3 
+        sm:w-1/2
+      ">
         <Posts>{ posts }</Posts>
       </div>
     </div>

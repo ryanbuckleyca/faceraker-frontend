@@ -1,12 +1,6 @@
 import React from 'react';
 import Post from '../components/Post/';
-
-// This default export determines where your story goes in the story list
-const story = {
-  title: 'Post',
-  component: Post
-}
-export default story;
+import '../index.css'
 
 const Template = (args) => <Post {...args} />;
 
@@ -38,3 +32,9 @@ LargeDisplay.args = {
     link: "www.ryanbuckley.ca"
   }
 };
+
+const story = {
+  title: 'Post',
+  component: Post
+}
+export default story;
