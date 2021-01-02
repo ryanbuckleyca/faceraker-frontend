@@ -4,10 +4,11 @@ import React from 'react';
 import Post from '../components/Post/';
 
 // This default export determines where your story goes in the story list
-export default {
+const story = {
   title: 'Post',
-  component: Post,
-};
+  component: Post
+}
+export default story;
 
 const Template = (args) => <Post {...args} />;
 

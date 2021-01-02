@@ -9,11 +9,7 @@ const Post = (props) => {
   const { title, price, location, images, text, link } = props.data
 
   return (
-    <div style={{ 
-      border: '1px red solid', 
-      borderRadius: '.5em',
-      padding: '.8em'
-    }}>
+    <main class="border-solid border-2 border-red-400 rounded-md p-3">
       <Header>
         <Title linkTo={ link }>
           { title }
@@ -31,7 +27,7 @@ const Post = (props) => {
       <p>
         { text }
       </p>
-    </div>
+    </main>
   )
 }
 

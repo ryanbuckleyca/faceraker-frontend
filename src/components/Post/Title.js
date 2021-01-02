@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Title = ({ linkTo, children }) => (
-  <h1 style={{ margin: ' 0 0 .3em', padding: 0 }}>
+  <h1 class="mt-1 p-0 text-2xl">
     <a href={ linkTo }>
       { children }
     </a>

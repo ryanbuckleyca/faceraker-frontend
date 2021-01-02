@@ -30,7 +30,7 @@ const markerClass = (post) => (
   : "marker-pilon"
 )
 
-function Mapbox({ posts }) { 
+function Mapbox({ children }) { 
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: 'map',
@@ -38,7 +38,7 @@ function Mapbox({ posts }) {
       center: [-73.55335998535156, 45.509063720703125],
       zoom: 9
     })
-    posts.forEach(post => {
+    children.forEach(post => {
       const {lng, lat} = getCoords(post)
       const coords = new mapboxgl.LngLat(lng, lat)
       const el = document.createElement('div')
@@ -49,9 +49,9 @@ function Mapbox({ posts }) {
         .addTo(map)
       return marker
     })  
-  }, [posts])
+  }, [children])
 
-  if(!posts) return <em>Loading...</em>
+  if(!children) return <em>Loading...</em>
 
   return (
     <div id='map' style={{ top: '50px', width: '100%', height: '300px' }}></div>

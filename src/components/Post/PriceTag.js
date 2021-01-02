@@ -1,18 +1,7 @@
 import React from 'react'
-import pricetag from '../../images/pricetag.svg'
-
 
 const PriceTag = ({ children }) => (
-  <div style={{
-      display: 'flex',
-      textAlign: 'center',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundImage: `url(${pricetag})`,
-      color: 'white',
-      width: '55px',
-      height: '55px'
-  }}>
+  <div class="flex items-center justify-center bg-pricetag text-white w-14 h-14">
     { children }
   </div>
 )

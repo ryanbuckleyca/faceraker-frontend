@@ -2,15 +2,9 @@ import React from 'react'
 import pin from '../../images/pin.svg'
 
 const Location = ({ children }) => (
-  <address style={{ display: 'flex', alignItems: 'center', justifyContents: 'center'}}>
-    <img src={ pin } alt="map pin" style={{ marginRight: '.3em'}} />
-    <small title={ children } style={{ 
-      fontSize: '.8em',
-      overflow: 'hidden', 
-      textOverflow: 'ellipsis', 
-      whiteSpace: 'nowrap',
-      cursor: 'help'
-    }}>
+  <address class="flex items-center justify-left">
+    <img src={ pin } alt="map pin" class="mr-1" />
+    <small title={ children } class="text-sm truncate">
       { children }
     </small>
   </address>
