@@ -4,7 +4,7 @@ import { callAPI } from './utils/callAPI'
 import Header from './components/Header'
 import Posts from './components/Posts'
 import Filters from './components/Filters'
-import Mapbox from './components/Mapbox'
+import Mapbox from './components/Mapbox/'
 
 function App() {
 
@@ -24,15 +24,13 @@ function App() {
   if(errors) return <div>{errors}</div>
 
   return (
-    <div className="App">
+    <div class="relative">
       <div class="fixed top-0 left-0 right-0 w-full bg-white z-10">
         <Header />
         <Filters setPosts={setPosts}>{ posts }</Filters>
         <Mapbox>{ posts }</Mapbox>
       </div>
-      <Posts>
-        { posts }
-      </Posts>
+      <Posts>{ posts }</Posts>
     </div>
   );
 }

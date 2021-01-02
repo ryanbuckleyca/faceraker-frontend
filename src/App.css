@@ -2,18 +2,6 @@ body {
   margin: 3em;
 }
 
-.App {
-  position: relative;
-}
-
-.map-container {
-  position: relative;
-  top: 50px;
-  height: 250px;
-  left: 0;
-  right: 0;
-}
-
 .marker-pilon {
   background-image: url('./images/pilon.png');
   background-size: cover;
