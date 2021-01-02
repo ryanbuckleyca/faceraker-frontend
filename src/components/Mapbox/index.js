@@ -35,7 +35,7 @@ function Mapbox({ children }) {
   if(!children) return <em>Loading...</em>
 
   return (
-    <div id='map' class="relative top-10 w-full h-60"></div>
+    <div id='map' class="h-full"></div>
   )
 }
 

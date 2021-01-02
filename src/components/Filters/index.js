@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from './Button'
+import Button from '../Button'
 
 function Filters({ children, setPosts }) {
 
@@ -11,7 +11,7 @@ function Filters({ children, setPosts }) {
   }
   
   return (
-    <div class="relative top-0 h-0">
+    <div class="h-12 text-center">
       <Button id='sortAsc' onClick={() => sortByPrice('ASC')}>
         sort by price ASC
       </Button>

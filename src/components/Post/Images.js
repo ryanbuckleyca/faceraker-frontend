@@ -3,11 +3,17 @@ function Images({ children }) {
 
   if (!children || images.length < 1) return <em>{"no images"}</em>
 
+  // TODO: render carousel for small screens
+
   return (
-    <div class="flex space-y-2 space-x-2 flex-wrap">{ 
-      images.map(img => (
-        <img key={img} src={img} alt="detail" width="100" />
-      ))
+    <div class="flex space-y-2 flex-wrap my-3">{ 
+      images.map(img => <img 
+        key={img} 
+        src={img} 
+        alt="detail" 
+        width="100" 
+        class="mr-2" 
+      />)
     }</div>
   )
 }

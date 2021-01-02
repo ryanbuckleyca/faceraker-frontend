@@ -1,9 +1,9 @@
 import React from 'react'
 import logo from '../images/logo.svg'
 
-function Header() {
+function Slogan() {
   return (
-    <header class="bg-red-600 flex justify-between p-5">
+    <header class="w-full flex justify-between items-center">
       <img src={logo} alt="Louwer logo" align="left" class="h-12 text-left mr-auto" />
       <div class="space-y-0 text-white text-center">
         <p class="m-0 p-0">keep montrêal affordable</p>
@@ -14,4 +14,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Slogan
