@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
 const ImageSlider = ({ images }) => {
-  console.log('images in ImageSlider are: ', images)
   const [index, setIndex] = useState(0);
 
   const slideRight = () => {
-    console.log('slideRight')
     setIndex((index + 1) % images.length);
   }
 

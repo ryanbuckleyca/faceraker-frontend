@@ -7,7 +7,8 @@ module.exports = {
         'pricetag': "url('/src/images/pricetag.svg')"
        }),
       colors: {
-        teal: '#00C4D0'
+        teal: '#00C4D0',
+        beige: '#FFF5E0'
       }
     }
   },

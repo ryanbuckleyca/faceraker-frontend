@@ -16,11 +16,16 @@ const mapObj = {
   zoom: 10
 }
 
+const popUpSpecs = {
+  offset: 10,
+  focusAfterOpen: false
+}
+
 const putMarkerOnMap = (post, map) => {
   const placeholder = document.createElement('div')
   ReactDOM.render(popupCard(post), placeholder)
   const { lng, lat } = getCoords(post)
-  const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(placeholder);
+  const popup = new mapboxgl.Popup(popUpSpecs).setDOMContent(placeholder);
   const coords = new mapboxgl.LngLat(lng, lat)
   const el = document.createElement('div')
   el.className = markerClass(post)
@@ -33,13 +38,15 @@ const putMarkerOnMap = (post, map) => {
   return marker
 }
 
-function Mapbox({ children }) { 
+function Mapbox({ map, setMap, children }) { 
   useEffect(() => {
-    const map = new mapboxgl.Map(mapObj)
-    children.forEach(post => putMarkerOnMap(post, map))  
-  }, [children])
+    const mapbox = new mapboxgl.Map(mapObj)
+    setMap(mapbox)
+  }, [])
 
   if(!children) return <em>Loading...</em>
+
+  children.forEach(post => putMarkerOnMap(post, map))
 
   return (
     <div id='map' className='h-full'></div>

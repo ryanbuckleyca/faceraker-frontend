@@ -1,13 +1,30 @@
 import React from 'react'
 import pin from '../../images/pin.svg'
 
-const Location = ({ children }) => (
-  <address className="flex items-center justify-left">
-    <img src={ pin } alt="map pin" className="mr-1" />
-    <small title={ children } className="text-sm truncate">
-      { children }
-    </small>
-  </address>
-)
+const Location = ({ children, map, setMap }) => {
+
+  const { location, longitude, latitude } = children
+
+  const flyToLoc = (lng, lat) => {
+    console.log('flyToLoc called')
+    map.flyTo({
+      zoom: 14,
+      center: [lng, lat],
+      essential: true
+    })
+  }
+  return (
+    <address className="flex items-center justify-left" onClick={()=>flyToLoc(longitude, latitude)}>
+      <img src={ pin } alt="map pin" className="mr-1" />
+      <small title={ location } className="text-sm truncate">
+        { location } &nbsp; (
+        <span className="border-b-2 border-dotted border-gray-400 cursor-pointer">
+          show on map
+        </span>
+        )
+      </small>
+    </address>
+  )
+}
 
 export default Location

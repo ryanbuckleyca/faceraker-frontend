@@ -11,7 +11,7 @@ function Filters({ children, setPosts }) {
   }
   
   return (
-    <div className="h-12 text-center">
+    <div className="h-12 text-center space-x-3">
       <Button id='sortAsc' onClick={() => sortByPrice('ASC')}>
         sort by price ASC
       </Button>

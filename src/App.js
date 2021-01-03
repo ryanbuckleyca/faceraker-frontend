@@ -8,6 +8,7 @@ import Mapbox from './components/Mapbox/'
 function App() {
 
   const [ posts, setPosts ] = useState([])
+  const [ map, setMap ] = useState()
   const [ errors, setErrors ] = useState()
 
   useEffect(() => { 
@@ -20,6 +21,10 @@ function App() {
     )
   }, [])
 
+  useEffect(() => {
+    console.log('map state updated: ', map)
+  }, [map])
+
   if(errors) return <div>{errors}</div>
 
   return (
@@ -30,24 +35,25 @@ function App() {
       ">
         <Slogan />
       </div>
-      <div id="mapbox" className="
-        w-full h-64 top-20 
-        sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
-      ">
-        <Mapbox>{ posts }</Mapbox>
+      <div className="sticky top-0 z-20">
+        <div id="mapbox" className="
+          w-full h-64 top-20
+          sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
+        ">
+          <Mapbox map={map} setMap={setMap}>{ posts }</Mapbox>
+        </div>
+        <div id="filters" className="
+          w-full bg-beige pt-2 z-10
+          sm:w-1/2 sm:top-0
+        ">
+          <Filters setPosts={setPosts}>{ posts }</Filters>
+        </div>
       </div>
-      <div id="filters" className="
-        w-full bg-white sticky top-0 z-10
-        sm:w-1/2 
-      ">
-        <Filters setPosts={setPosts}>{ posts }</Filters>
-      </div>
-
       <div id="posts" className="
-        w-full px-3 
+        w-full px-3 bg-beige
         sm:w-1/2
       ">
-        <Posts>{ posts }</Posts>
+        <Posts map={map} setMap={setMap}>{ posts }</Posts>
       </div>
     </div>
   );
