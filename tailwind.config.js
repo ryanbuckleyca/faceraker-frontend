@@ -5,8 +5,11 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'pricetag': "url('/src/images/pricetag.svg')"
-       })
-    },
+       }),
+      colors: {
+        teal: '#00C4D0'
+      }
+    }
   },
   variants: {
     extend: {},

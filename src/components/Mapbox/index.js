@@ -1,5 +1,6 @@
 /* src/App.js */
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl';
 import { markerClass } from './markers'
 import { getCoords } from './coords'
@@ -16,8 +17,10 @@ const mapObj = {
 }
 
 const putMarkerOnMap = (post, map) => {
+  const placeholder = document.createElement('div')
+  ReactDOM.render(popupCard(post), placeholder)
   const { lng, lat } = getCoords(post)
-  const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupCard(post));
+  const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(placeholder);
   const coords = new mapboxgl.LngLat(lng, lat)
   const el = document.createElement('div')
   el.className = markerClass(post)

@@ -1,7 +1,7 @@
 import React from 'react'
 
-const PriceTag = ({ children }) => (
-  <div className="flex items-center justify-center bg-pricetag text-white w-14 h-14 ml-3">
+const PriceTag = ({ children, className }) => (
+  <div className={`pricetag ${className}`} >
     { children }
   </div>
 )

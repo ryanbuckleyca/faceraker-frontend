@@ -1,9 +1,14 @@
-function Images({ children }) {
+import React from 'react'
+import ImageSlider from '../ImageSlider' 
+
+const Images = ({ children, as }) => {
   const images = JSON.parse(children)
 
-  if (!children || images.length < 1) return <em>{"no images"}</em>
+  if (!children || images.length < 1) 
+    return <div className="my-3"><em>{"[ no images ]"}</em></div>
 
-  // TODO: render carousel for small screens
+  if(as === 'carousel')
+    return <ImageSlider images={images} />
 
   return (
     <div className="flex space-y-2 flex-wrap my-3">{ 

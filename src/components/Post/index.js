@@ -13,9 +13,9 @@ const Post = (props) => {
       <Header>
         <Title linkTo={ link }>{ title }</Title>
         <Location>{ location }</Location>
-        <PriceTag>{ price }</PriceTag>
+        <PriceTag className="w-20 h-20">{ price }</PriceTag>
       </Header>
-      <Images>{ images }</Images>
+      <Images as="carousel">{ images }</Images>
       <p className="my-3">
         { text }
       </p>
