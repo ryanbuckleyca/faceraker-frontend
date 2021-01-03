@@ -8,6 +8,7 @@ import Mapbox from './components/Mapbox/'
 function App() {
 
   const [ posts, setPosts ] = useState([])
+  const [ refs, setRefs ] = useState(null)
   const [ map, setMap ] = useState()
   const [ errors, setErrors ] = useState()
 
@@ -21,14 +22,10 @@ function App() {
     )
   }, [])
 
-  useEffect(() => {
-    console.log('map state updated: ', map)
-  }, [map])
-
   if(errors) return <div>{errors}</div>
 
   return (
-    <div className="container">
+    <div>
       <div id="slogan" className="
         w-full p-5 bg-red-600 z-10
         sm:w-1/2
@@ -40,20 +37,26 @@ function App() {
           w-full h-64 top-20
           sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
         ">
-          <Mapbox map={map} setMap={setMap}>{ posts }</Mapbox>
+          <Mapbox map={map} refs={refs} setMap={setMap}>
+            { posts }
+          </Mapbox>
         </div>
         <div id="filters" className="
           w-full bg-beige pt-2 z-10
           sm:w-1/2 sm:top-0
         ">
-          <Filters setPosts={setPosts}>{ posts }</Filters>
+          <Filters setPosts={setPosts}>
+            { posts }
+          </Filters>
         </div>
       </div>
       <div id="posts" className="
         w-full px-3 bg-beige
         sm:w-1/2
       ">
-        <Posts map={map} setMap={setMap}>{ posts }</Posts>
+        <Posts map={map} refs={refs} setRefs={setRefs}>
+          { posts }
+        </Posts>
       </div>
     </div>
   );

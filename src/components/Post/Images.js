@@ -1,13 +1,13 @@
 import React from 'react'
 import ImageSlider from '../ImageSlider' 
 
-const Images = ({ children }) => {
+const Images = ({ children, className }) => {
   const images = JSON.parse(children)
-
+  const classNames = `imageContainer ${className || ''}`;
   return (
-    <div className="my-3 bg-gray-100 border-2 border-gray-200 border-style-solid">{ 
+    <div className={classNames}>{ 
       images.length < 1 
-      ? <em>{"[ no images ]"}</em>
+      ? <em className="text-center w-full">{"no images"}</em>
       : <ImageSlider images={images} />
     }</div>
   )

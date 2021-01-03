@@ -1,10 +1,10 @@
 import React from 'react'
 
 function Header({ children }) {
-  const [ Title, Location, PriceTag ] = children
+  const [ Title, PriceTag, Location ] = children
   return (
-    <header className="relative flex items-center mb-7">
-      <div className="flex-1 min-w-0 mr-18">
+    <header className="flex items-center h-20 mb-4">
+      <div className="flex-1 min-w-0 mr-2">
         { Title }
         { Location }
       </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import pin from '../../images/pin.svg'
 
-const Location = ({ children, map, setMap }) => {
+const Location = ({ children, map }) => {
 
   const { location, longitude, latitude } = children
 
@@ -17,11 +17,15 @@ const Location = ({ children, map, setMap }) => {
     <address className="flex items-center justify-left" onClick={()=>flyToLoc(longitude, latitude)}>
       <img src={ pin } alt="map pin" className="mr-1" />
       <small title={ location } className="text-sm truncate">
-        { location } &nbsp; (
+        { location }
+      </small>
+      &nbsp;
+      <small>
+      (
         <span className="border-b-2 border-dotted border-gray-400 cursor-pointer">
           show on map
         </span>
-        )
+      )
       </small>
     </address>
   )

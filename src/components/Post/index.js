@@ -12,11 +12,11 @@ const Post = ({ data, map, setMap }) => {
     return false
 
   return (
-    <main className="border-solid border-2 border-red-400 bg-white rounded-xl p-5">
+    <main className="relative border-solid border-2 border-red-400 bg-white rounded-xl p-5">
       <Header>
-        <Title trunc="80" linkTo={ link } className="mb-5 p-0 text-2xl mr-24">{ title }</Title>
-        <Location map={map} setMap={setMap}>{{ location, longitude, latitude }}</Location>
-        <PriceTag className="w-20 h-20 text-xl">{ price }</PriceTag>
+        <Title trunc="60" linkTo={ link } className="mb-1 p-0 text-2xl flex-1">{ title }</Title>
+        <PriceTag className="w-20 h-20 text-xl flex-0">{ price }</PriceTag>
+        <Location map={map}>{{ location, longitude, latitude }}</Location>
       </Header>
       <Images>{ images }</Images>
       <p className="my-3">

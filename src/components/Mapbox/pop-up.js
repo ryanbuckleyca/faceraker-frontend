@@ -1,17 +1,35 @@
+import React from 'react'
 import PriceTag from '../Post/PriceTag'
 import Images from '../Post/Images'
 import Title from '../Post/Title'
+import Button from '../Button'
 
-export const popupCard = (post) => (
-  <aside className="p-1 h-56 overflow-scroll text-sm">
-    <header className="relative flex items-center h-10 text-sm">
-      <Title trunc="40" linkTo={ post.link } className="p-0 text-md mr-10">{ post.title }</Title>
-      <PriceTag className="w-10 h-10 text-sm">{ post.price }</PriceTag>
-    </header>
-    <Images>{ post.images }</Images>
-    <p className="my-3">
-      { post.text }
-    </p>
-    <button className="bg-teal rounded text-white w-full p-2" onClick={()=>window.open(post.link)}>view on facebook</button>
-  </aside>
-)
+export const popupCard = (post, refs) => {
+  const scrollToRef = id => (
+    refs[id].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  )
+  return (
+    <aside className="
+      p-1 text-xs sm:h-56 sm:overflow-scroll sm:text-sm
+    ">
+      <header className="relative flex items-center h-10 text-sm">
+        <Title trunc="40" linkTo={ post.link } className="p-0 flex-1 mr-2 text-md">{ post.title }</Title>
+        <PriceTag className="w-10 h-10 text-sm">{ post.price }</PriceTag>
+      </header>
+      <Images className="hidden sm:block">{ post.images }</Images>
+      <p className="hidden sm:block sm:my-3">
+        { post.text }
+      </p>
+      <Button type="primary" 
+        onClick={()=>window.open(post.link)}>
+        view on facebook
+      </Button>
+      <Button type="secondary"
+        onClick={()=>scrollToRef(post.id)}>preview
+      </Button>
+    </aside>
+  )
+}
