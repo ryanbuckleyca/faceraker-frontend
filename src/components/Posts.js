@@ -1,7 +1,7 @@
 import React, { useEffect, createRef } from 'react'
 import Post from './Post/'
 
-const Posts = ({ children, map, setMap, refs, setRefs }) => {
+const Posts = ({ children, map, refs, setRefs, dimensions }) => {
   
   useEffect(()=> {
     const refList = children.reduce((acc, post) => {
@@ -15,7 +15,7 @@ const Posts = ({ children, map, setMap, refs, setRefs }) => {
 
   const posts = children.map(post => (
     <div id={post.id} ref={refs[post.id]} key={post.id} className="mb-4">
-      <Post data={post} map={map} setMap={setMap} />
+      <Post dimensions={dimensions} data={post} map={map} />
     </div>
   ))
 

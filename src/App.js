@@ -8,11 +8,21 @@ import Mapbox from './components/Mapbox/'
 function App() {
 
   const [ posts, setPosts ] = useState([])
+  const [ dimensions, setDimensions ] = useState()
   const [ refs, setRefs ] = useState(null)
   const [ map, setMap ] = useState()
   const [ errors, setErrors ] = useState()
 
+  const handleResize = () => {
+    const { innerWidth: width, innerHeight: height } = window
+    console.log('w, h: ', width, height)
+    setDimensions({ width, height })
+  }
+
   useEffect(() => { 
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
     const query = `query={ posts {
       id, title, price, location, latitude, longitude,images, text, link, group { id, name } }
     }`
@@ -54,7 +64,7 @@ function App() {
         w-full px-3 bg-beige
         sm:w-1/2
       ">
-        <Posts map={map} refs={refs} setRefs={setRefs}>
+        <Posts dimensions={dimensions} map={map} refs={refs} setRefs={setRefs}>
           { posts }
         </Posts>
       </div>

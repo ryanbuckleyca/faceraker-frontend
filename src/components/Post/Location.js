@@ -15,15 +15,15 @@ const Location = ({ children, map }) => {
   }
   return (
     <address className="flex items-center justify-left" onClick={()=>flyToLoc(longitude, latitude)}>
-      <img src={ pin } alt="map pin" className="mr-1" />
+      <img src={ pin } alt="map pin" className="mr-1 flex-0" />
       <small title={ location } className="text-sm truncate">
         { location }
       </small>
       &nbsp;
-      <small>
+      <small className="flex-0">
       (
         <span className="border-b-2 border-dotted border-gray-400 cursor-pointer">
-          show on map
+          show
         </span>
       )
       </small>

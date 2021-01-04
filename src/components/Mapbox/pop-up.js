@@ -8,7 +8,7 @@ export const popupCard = (post, refs) => {
   const scrollToRef = id => (
     refs[id].current.scrollIntoView({
       behavior: 'smooth',
-      block: 'start',
+      block: 'end',
     })
   )
   return (
@@ -23,13 +23,16 @@ export const popupCard = (post, refs) => {
       <p className="hidden sm:block sm:my-3">
         { post.text }
       </p>
+      <span className="flex">
       <Button type="primary" 
+        className="flex-1"
         onClick={()=>window.open(post.link)}>
         view on facebook
       </Button>
       <Button type="secondary"
-        onClick={()=>scrollToRef(post.id)}>preview
+        onClick={()=>scrollToRef(post.id)}>show
       </Button>
+      </span>
     </aside>
   )
 }

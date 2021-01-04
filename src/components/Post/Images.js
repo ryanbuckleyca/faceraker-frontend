@@ -3,7 +3,7 @@ import ImageSlider from '../ImageSlider'
 
 const Images = ({ children, className }) => {
   const images = JSON.parse(children)
-  const classNames = `imageContainer ${className || ''}`;
+  const classNames = `imageContainer text-center ${className || ''}`;
   return (
     <div className={classNames}>{ 
       images.length < 1 
