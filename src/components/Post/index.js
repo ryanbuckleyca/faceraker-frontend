@@ -11,7 +11,8 @@ const Post = ({ data, map, dimensions }) => {
   if(!map || !data) 
     return false
 
-  const trunc = dimensions.width / 22
+  const w = dimensions.width
+  const trunc = w < 640 ?  w / 8 : w / 22
   console.log('trun will be :', trunc)
 
   return (

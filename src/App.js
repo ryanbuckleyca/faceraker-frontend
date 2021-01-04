@@ -47,7 +47,7 @@ function App() {
           w-full h-64 top-20
           sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
         ">
-          <Mapbox map={map} refs={refs} setMap={setMap}>
+          <Mapbox dimensions={dimensions} map={map} refs={refs} setMap={setMap}>
             { posts }
           </Mapbox>
         </div>

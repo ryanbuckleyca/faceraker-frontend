@@ -21,9 +21,9 @@ const popUpSpecs = {
   focusAfterOpen: false
 }
 
-const putMarkerOnMap = (post, refs, map) => {
+const putMarkerOnMap = (dimensions, post, refs, map) => {
   const placeholder = document.createElement('div')
-  ReactDOM.render(popupCard(post, refs), placeholder)
+  ReactDOM.render(popupCard(dimensions, post, refs), placeholder)
   const { lng, lat } = getCoords(post)
   const popup = new mapboxgl.Popup(popUpSpecs).setDOMContent(placeholder);
   const coords = new mapboxgl.LngLat(lng, lat)
@@ -38,14 +38,14 @@ const putMarkerOnMap = (post, refs, map) => {
   return marker
 }
 
-function Mapbox({ map, setMap, refs, children }) { 
+function Mapbox({ dimensions, map, setMap, refs, children }) { 
   useEffect(() => {
     const mapbox = new mapboxgl.Map(mapObj)
     setMap(mapbox)
   }, [setMap, children])
 
   useEffect(() => {
-    children.forEach(post => putMarkerOnMap(post, refs, map))
+    children.forEach(post => putMarkerOnMap(dimensions, post, refs, map))
   }, [map, refs])
 
   return (
