@@ -6,7 +6,6 @@ import Filters from 'components/Filters/'
 import Mapbox from 'components/Mapbox/'
 
 function Home() {
-
   const [ posts, setPosts ] = useState([])
   const [ dimensions, setDimensions ] = useState()
   const [ refs, setRefs ] = useState(null)
@@ -15,7 +14,6 @@ function Home() {
 
   const handleResize = () => {
     const { innerWidth: width, innerHeight: height } = window
-    console.log('w, h: ', width, height)
     setDimensions({ width, height })
   }
 
@@ -27,7 +25,7 @@ function Home() {
       id, title, price, location, latitude, longitude,images, text, link, group { id, name } }
     }`
     callAPI(query).then(res => res.data
-      ? setPosts(res.data.posts)
+      ? setPosts([...res.data.posts])
       : setErrors("cannot connect to api")
     )
   }, [])

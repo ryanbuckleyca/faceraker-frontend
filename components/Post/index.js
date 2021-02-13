@@ -8,12 +8,10 @@ import Location from './Location'
 const Post = ({ data, map, dimensions }) => {
   const { title, price, location, longitude, latitude, images, text, link } = data
 
-  if(!map || !data) 
-    return false
+  if(!data) return false
 
   const w = dimensions.width
   const trunc = w < 640 ?  w / 8 : w / 22
-  console.log('trun will be :', trunc)
 
   return (
     <main className="relative border-solid border-2 border-red-400 bg-white rounded-xl p-5">
