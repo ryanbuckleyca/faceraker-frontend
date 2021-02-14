@@ -1,6 +1,6 @@
 import { errors } from './errorHandler'
 
-const baseURL = "https://louwer-api.herokuapp.com/graphql?"
+const baseURL = "https://louwer-api.TEST.com/graphql?"
 
 export const callAPI = async (q) => {
   const options = {
