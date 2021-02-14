@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { createContext } from \"react\";\nvar MapContext = /*#__PURE__*/createContext([{}, function () {}]);\nexport default MapContext;","map":null,"metadata":{},"sourceType":"module"}

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "next build && netlify deploy --prod"
   },
   "dependencies": {
     "autoprefixer": "^10.2.4",

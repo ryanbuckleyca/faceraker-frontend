@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\n\nconst PriceTag = ({\n  children,\n  className\n}) => /*#__PURE__*/_jsx(\"div\", {\n  className: `pricetag ${className}`,\n  children: children\n});\n\nexport default PriceTag;","map":null,"metadata":{},"sourceType":"module"}

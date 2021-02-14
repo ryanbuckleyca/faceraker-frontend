@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var errors = function errors(msg, err) {\n  var errMsg = msg + err;\n  console.log(errMsg);\n  return {\n    data: null,\n    errors: errMsg\n  };\n};","map":null,"metadata":{},"sourceType":"module"}
