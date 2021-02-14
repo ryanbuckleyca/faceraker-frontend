@@ -17,7 +17,7 @@ const PopupCard = ({ post, refs }) => {
   )
 
   return (
-    <aside className="pop-up p-4 bg-white -ml-24 mt-12 w-56 text-xs sm:h-60 sm:overflow-scroll sm:text-sm">
+    <aside className="pop-up p-4 bg-white mt-12 w-64 text-xs sm:h-60 sm:overflow-scroll sm:text-sm">
       <header className="relative flex items-center h-10 text-sm">
         <Title trunc={trunc} linkTo={ post.link } className="p-0 flex-1 mr-2 text-md">{ post.title }</Title>
         <PriceTag className="w-10 h-10 text-sm">{ post.price }</PriceTag>

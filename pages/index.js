@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { callAPI } from 'utils/callAPI'
 import Slogan from 'components/Slogan'
 import Posts from 'components/Posts'

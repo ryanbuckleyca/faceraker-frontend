@@ -1,10 +1,7 @@
 import { useState, useContext } from 'react'
-import { markerClass } from './markers'
-import { getCoords } from './coords'
-import PopUpCard from './PopUpCard'
 import MapContext from './MapContext'
-
-import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
+import MarkerPopup from './MarkerPopup'
+import ReactMapboxGl from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map = ReactMapboxGl({
@@ -17,13 +14,14 @@ const Mapbox = ({ refs, children }) => {
   const [mapSettings, setMapSettings] = useContext(MapContext)
   const [showPopup, setShowPopup] = useState()
 
+  // @TODO: onClick outside of marker should close popup
   const expandMarker = (post) => {
     setShowPopup(post.id)
     // @TODO: set context instead of former state
     setMapSettings({ 
       ...mapSettings,
-      zoom: [10],
-      center: [post.longitude, post.latitude] 
+      zoom: [12],
+      center: [post.longitude, post.latitude-0.005] 
     })
   }
 
@@ -32,13 +30,14 @@ const Mapbox = ({ refs, children }) => {
       style="mapbox://styles/mapbox/streets-v11"
       center={mapSettings.center}
       zoom={mapSettings.zoom}
+      onDrag={() => setShowPopup(false)}
       containerStyle={{
         height: '100%',
         width: '100%'
       }}
     >
       {children.map((post) => 
-        <MarkerAndPopup
+        <MarkerPopup
           key={post.id}
           post={post}
           refs={refs}
@@ -47,25 +46,6 @@ const Mapbox = ({ refs, children }) => {
         />
       )}
     </Map>
-  )
-}
-
-// @TODO: getCoords re-renders on every state change
-// which moves the markers randomly, as getCoords should
-// better to set random coords when fetching or initially saving data
-const MarkerAndPopup = ({ post, refs, showPopup, expandMarker }) => {
-  return (
-    <>
-      <Marker
-        key={post.id}
-        coordinates={[getCoords(post).lng, getCoords(post).lat]}
-        anchor="bottom"
-        onClick={() => expandMarker(post)}
-      >
-        {showPopup === post.id && <PopUpCard post={post} refs={refs} />}
-        <div className={markerClass(post)}></div>
-      </Marker>
-    </>
   )
 }
 
