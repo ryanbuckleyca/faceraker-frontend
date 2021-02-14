@@ -17,7 +17,7 @@ const PopupCard = ({ post, refs }) => {
   )
 
   return (
-    <aside className="p-1 bg-white z-100 text-xs sm:h-56 sm:overflow-scroll sm:text-sm">
+    <aside className="pop-up p-4 bg-white -ml-24 mt-12 w-56 text-xs sm:h-60 sm:overflow-scroll sm:text-sm">
       <header className="relative flex items-center h-10 text-sm">
         <Title trunc={trunc} linkTo={ post.link } className="p-0 flex-1 mr-2 text-md">{ post.title }</Title>
         <PriceTag className="w-10 h-10 text-sm">{ post.price }</PriceTag>
@@ -30,7 +30,7 @@ const PopupCard = ({ post, refs }) => {
       <Button type="primary" 
         className="flex-1"
         onClick={()=>window.open(post.link)}>
-        view on facebook
+        fb view
       </Button>
       <Button type="secondary"
         onClick={()=>scrollToRef(post.id)}>show

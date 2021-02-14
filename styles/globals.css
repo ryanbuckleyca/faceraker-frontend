@@ -41,6 +41,7 @@ h1, h2 {
   background-image: url('images/pilon.png');
   background-size: cover;
   width: 40px;
+  z-index: 10;
   height: 40px;
   cursor: pointer;
 }
@@ -49,12 +50,14 @@ h1, h2 {
   background-image: url('images/dot.png');
   background-size: cover;
   width: 25px;
+  z-index: 10;
   height: 25px;
   cursor: pointer;
 }
 
-.mapboxgl-popup {
-  max-width: 400px;
+.pop-up {
+  position: absolute;
+  z-index: 1000;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 

@@ -14,7 +14,18 @@ const Map = ReactMapboxGl({
 const Mapbox = ({ refs, children }) => {
   if (!children || children.length <= 1) return false
 
-  const [mapSettings] = useContext(MapContext)
+  const [mapSettings, setMapSettings] = useContext(MapContext)
+  const [showPopup, setShowPopup] = useState()
+
+  const expandMarker = (post) => {
+    setShowPopup(post.id)
+    // @TODO: set context instead of former state
+    setMapSettings({ 
+      ...mapSettings,
+      zoom: [10],
+      center: [post.longitude, post.latitude] 
+    })
+  }
 
   return (
     <Map
@@ -27,7 +38,13 @@ const Mapbox = ({ refs, children }) => {
       }}
     >
       {children.map((post) => 
-        <MarkerAndPopup key={post.id} post={post} refs={refs} />
+        <MarkerAndPopup
+          key={post.id}
+          post={post}
+          refs={refs}
+          showPopup={showPopup}
+          expandMarker={expandMarker}
+        />
       )}
     </Map>
   )
@@ -36,28 +53,16 @@ const Mapbox = ({ refs, children }) => {
 // @TODO: getCoords re-renders on every state change
 // which moves the markers randomly, as getCoords should
 // better to set random coords when fetching or initially saving data
-const MarkerAndPopup = ({ post, refs }) => {
-  const [mapSettings, setMapSettings] = useContext(MapContext)
-  const [showPopup, setShowPopup] = useState()
-
-  const expandMarker = (post) => {
-    setShowPopup(post.id)
-    // @TODO: set context instead of former state
-    setMapSettings({ 
-      ...mapSettings,
-      zoom: [10],
-      center: [post.longitude, post.latitude] 
-    })
-  }  
+const MarkerAndPopup = ({ post, refs, showPopup, expandMarker }) => {
   return (
     <>
-      {showPopup === post.id && <PopUpCard post={post} refs={refs} />}
       <Marker
         key={post.id}
         coordinates={[getCoords(post).lng, getCoords(post).lat]}
         anchor="bottom"
         onClick={() => expandMarker(post)}
       >
+        {showPopup === post.id && <PopUpCard post={post} refs={refs} />}
         <div className={markerClass(post)}></div>
       </Marker>
     </>
