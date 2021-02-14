@@ -14,10 +14,10 @@ function Filters({ children, setPosts }) {
   return (
     <div className="h-12 text-center space-x-3">
       <Button type="secondary" id='sortAsc' onClick={() => sortByPrice('ASC')}>
-        sort by price ASC
+        $ ↓
       </Button>
       <Button type="secondary" id='sortDesc' onClick={() => sortByPrice('DESC')}>
-        sort by price DES
+        $ ↑
       </Button>
     </div>
   )

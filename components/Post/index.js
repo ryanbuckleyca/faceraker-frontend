@@ -5,6 +5,7 @@ import Images from './Images'
 import Title from './Title'
 import PriceTag from './PriceTag'
 import Location from './Location'
+import { Facebook } from 'react-feather'
 
 const Post = ({ data, setShowPopup }) => {
   if(!data) return false
@@ -27,10 +28,10 @@ const Post = ({ data, setShowPopup }) => {
         { text }
       </p>
       <button 
-        className="bg-teal rounded text-white w-full p-2"
+        className="bg-teal flex justify-center space-x-2 items-center rounded text-white w-full p-2"
         onClick={()=>window.open(link)}
       >
-        view on facebook
+        <Facebook size={20} /> <div>voir/view facebook post</div>
       </button>
     </main>
   )
