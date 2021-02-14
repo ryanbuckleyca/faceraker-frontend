@@ -10,9 +10,11 @@ function Home() {
   const [ posts, setPosts ] = useState([])
   const [ refs, setRefs ] = useState(null)
   const [ errors, setErrors ] = useState()
+  const [ showPopup, setShowPopup ] = useState()
   const mapSettings = useState({
     center: [-73.55335998535156, 45.509063720703125],
-    zoom: [10]
+    zoom: [10],
+    currentPost: undefined,
   })
 
   useEffect(() => { 
@@ -42,7 +44,11 @@ function Home() {
           w-full h-64 top-20
           sm:w-1/2 sm:h-screen sm:top-0 sm:right-0 sm:fixed
         ">
-          <Mapbox refs={refs}>
+          <Mapbox
+            refs={refs}
+            showPopup={showPopup}
+            setShowPopup={setShowPopup}
+          >
             { posts }
           </Mapbox>
         </div>
@@ -59,7 +65,12 @@ function Home() {
         w-full px-3 bg-beige
         sm:w-1/2
       ">
-        <Posts refs={refs} setRefs={setRefs}>
+        <Posts
+          refs={refs}
+          setRefs={setRefs}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+        >
           { posts }
         </Posts>
       </div>

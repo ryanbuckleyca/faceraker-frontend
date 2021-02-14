@@ -1,7 +1,7 @@
 import React, { useEffect, createRef } from 'react'
 import Post from 'components/Post/'
 
-const Posts = ({ children, refs, setRefs }) => {
+const Posts = ({ children, refs, setRefs, setShowPopup }) => {
   
   useEffect(()=> {
     const refList = children.reduce((acc, post) => {
@@ -17,7 +17,7 @@ const Posts = ({ children, refs, setRefs }) => {
     <main className="z-0 bg-beige">
       {children.map(post => (
         <div key={post.id} ref={refs[post.id]} key={post.id} className="mb-4">
-          <Post data={post} />
+          <Post data={post} setShowPopup={setShowPopup} />
         </div>
       ))}
     </main>

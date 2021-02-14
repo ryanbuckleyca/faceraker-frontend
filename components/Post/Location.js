@@ -2,23 +2,24 @@ import { useContext } from 'react'
 import Pin from 'images/Pin.js'
 import MapContext from 'components/Mapbox/MapContext'
 
-const Location = ({ children }) => {
-  const [ , setMapSettings ] = useContext(MapContext)
+const Location = ({ post, setShowPopup }) => {
+  const [mapSettings, setMapSettings ] = useContext(MapContext)
 
-  const { location, longitude, latitude } = children
-
-  const flyToLoc = (lng, lat) => {
+  const flyToLoc = (post) => {
     setMapSettings({
-      zoom: [14],
-      center: [lng, lat],
+      ...mapSettings,
+      currentPost: post,
+      zoom: [12],
+      center: [post.longitude, post.latitude-0.007],
     })
+    setShowPopup(post.id)
   }
 
   return (
-    <address className="flex items-center justify-left" onClick={()=>flyToLoc(longitude, latitude)}>
+    <address className="flex items-center justify-left" onClick={()=>flyToLoc(post)}>
       <Pin className="mr-1 flex-0" />
-      <small title={ location } className="text-sm truncate">
-        { location }
+      <small title={ post.location } className="text-sm truncate">
+        { post.location }
       </small>
       &nbsp;
       <small className="flex-0">

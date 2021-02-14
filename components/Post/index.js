@@ -6,10 +6,10 @@ import Title from './Title'
 import PriceTag from './PriceTag'
 import Location from './Location'
 
-const Post = ({ data }) => {
+const Post = ({ data, setShowPopup }) => {
   if(!data) return false
 
-  const { title, price, location, longitude, latitude, images, text, link } = data
+  const { title, price, images, text, link } = data
 
   const dimensions = useContext(DisplayContext)
   const w = dimensions.width
@@ -20,9 +20,7 @@ const Post = ({ data }) => {
       <Header>
         <Title trunc={trunc} linkTo={ link } className="mb-1 p-0 text-2xl flex-1">{ title }</Title>
         <PriceTag className="w-20 h-20 text-xl flex-0">{ price }</PriceTag>
-        <Location>
-          {{ location, longitude, latitude }}
-        </Location>
+        <Location post={data} setShowPopup={setShowPopup} />
       </Header>
       <Images>{ images }</Images>
       <p className="my-3">
