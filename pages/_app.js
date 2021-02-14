@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import DisplayContext from 'components/DisplayContext'
 import 'styles/globals.css'
+import Head from 'next/head'
 
 function Louwer({ Component, pageProps }) { 
 
@@ -19,9 +20,14 @@ function Louwer({ Component, pageProps }) {
   
    
   return (
-  <DisplayContext.Provider value={getWindow()}>
-    <Component {...pageProps} />
-  </DisplayContext.Provider>
+    <>
+      <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+      </Head>
+      <DisplayContext.Provider value={getWindow()}>
+        <Component {...pageProps} />
+      </DisplayContext.Provider>
+    </>
   )
 }
 
