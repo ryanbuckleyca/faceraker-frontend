@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import MapContext from './MapContext'
 import MarkerPopup from './MarkerPopup'
 import ReactMapboxGl from 'react-mapbox-gl';
@@ -19,7 +19,7 @@ const Mapbox = ({ refs, children, setShowPopup, showPopup }) => {
       ...mapSettings,
       zoom: [12],
       currentPost: post,
-      center: [post.longitude, post.latitude-0.007] 
+      center: [post.longitude, post.latitude-0.007],
     })
     setShowPopup(post.id)
   }
