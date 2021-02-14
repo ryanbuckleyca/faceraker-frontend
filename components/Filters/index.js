@@ -2,6 +2,7 @@ import React from 'react'
 import Button from 'components/Button'
 
 function Filters({ children, setPosts }) {
+  if (!children || children.length <= 1) return false
 
   const sortByPrice = (dir) => {
     const sorted = children.sort((a, b) => (

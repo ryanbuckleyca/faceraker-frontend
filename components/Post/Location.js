@@ -1,18 +1,19 @@
-import React from 'react'
+import { useContext } from 'react'
 import Pin from 'images/Pin.js'
+import MapContext from 'components/Mapbox/MapContext'
 
-const Location = ({ children, map }) => {
+const Location = ({ children }) => {
+  const [ , setMapSettings ] = useContext(MapContext)
 
   const { location, longitude, latitude } = children
 
   const flyToLoc = (lng, lat) => {
-    console.log('flyToLoc called')
-    map.flyTo({
-      zoom: 14,
+    setMapSettings({
+      zoom: [14],
       center: [lng, lat],
-      essential: true
     })
   }
+
   return (
     <address className="flex items-center justify-left" onClick={()=>flyToLoc(longitude, latitude)}>
       <Pin className="mr-1 flex-0" />

@@ -1,39 +1,67 @@
-/* src/App.js */
-import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
-import mapboxgl from 'mapbox-gl';
+import { useState, useContext } from 'react'
 import { markerClass } from './markers'
 import { getCoords } from './coords'
 import PopUpCard from './PopUpCard'
+import MapContext from './MapContext'
 
-import ReactMapboxGl, { Marker, Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-  
+
 const Map = ReactMapboxGl({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX
-});
+})
 
-const Mapbox = ({ dimensions, map, refs, setMap, children }) => (
-  <Map
-    style="mapbox://styles/mapbox/streets-v11"
-    center={[-73.55335998535156, 45.509063720703125]}
-    zoom={[10]}
-    containerStyle={{
-      height: '100%',
-      width: '100%'
-    }}
-  >
-    {children.map((post) => {
-      <>
-      {console.log('post is: ', post)}
-        <PopUpCard dimensions={dimensions} post={post} refs={refs} />
-        <Marker coordinates={[getCoords(post)]} anchor="bottom">
-            <div className={markerClass(post)}></div>
-        </Marker>
-      </>
-    })}
-  </Map>
-)
+const Mapbox = ({ refs, children }) => {
+  if (!children || children.length <= 1) return false
 
+  const [mapSettings] = useContext(MapContext)
+
+  return (
+    <Map
+      style="mapbox://styles/mapbox/streets-v11"
+      center={mapSettings.center}
+      zoom={mapSettings.zoom}
+      containerStyle={{
+        height: '100%',
+        width: '100%'
+      }}
+    >
+      {children.map((post) => 
+        <MarkerAndPopup key={post.id} post={post} refs={refs} />
+      )}
+    </Map>
+  )
+}
+
+// @TODO: getCoords re-renders on every state change
+// which moves the markers randomly, as getCoords should
+// better to set random coords when fetching or initially saving data
+const MarkerAndPopup = ({ post, refs }) => {
+  const [mapSettings, setMapSettings] = useContext(MapContext)
+  const [showPopup, setShowPopup] = useState()
+
+  const expandMarker = (post) => {
+    setShowPopup(post.id)
+    // @TODO: set context instead of former state
+    setMapSettings({ 
+      ...mapSettings,
+      zoom: [10],
+      center: [post.longitude, post.latitude] 
+    })
+  }  
+  return (
+    <>
+      {showPopup === post.id && <PopUpCard post={post} refs={refs} />}
+      <Marker
+        key={post.id}
+        coordinates={[getCoords(post).lng, getCoords(post).lat]}
+        anchor="bottom"
+        onClick={() => expandMarker(post)}
+      >
+        <div className={markerClass(post)}></div>
+      </Marker>
+    </>
+  )
+}
 
 export default Mapbox

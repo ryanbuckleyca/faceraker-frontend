@@ -10,7 +10,6 @@ export const callAPI = async (q) => {
   try {
     const res = await fetch(`${baseURL}${q}`, options)
     const json = await res.json()
-    console.log(json)
     return json
   }
   catch (err) {
